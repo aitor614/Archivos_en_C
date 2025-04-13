@@ -1,0 +1,5 @@
+﻿  ping.c
+C:\Users\usuario\source\repos\producto2(FP047)_SanchezCervantes_Aitor\producto2(FP047)_SanchezCervantes_Aitor\ping.c(77,2): warning C4013: 'menuPrincipal' sin definir; se supone que extern devuelve como resultado int
+  producto2(FP047)_SanchezCervantes_Aitor.vcxproj -> C:\Users\usuario\source\repos\producto2(FP047)_SanchezCervantes_Aitor\x64\Debug\producto2(FP047)_SanchezCervantes_Aitor.exe
+  "pwsh.exe" no se reconoce como un comando interno o externo,
+  programa o archivo por lotes ejecutable.
