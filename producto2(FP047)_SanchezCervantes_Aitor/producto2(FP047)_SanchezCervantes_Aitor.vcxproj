@@ -127,7 +127,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="adaptadorRed.c" />
     <ClCompile Include="conexionIP.c" />
+    <ClCompile Include="escogerAdaptador.c" />
     <ClCompile Include="fecha.c" />
     <ClCompile Include="menuPrincipal.c" />
     <ClCompile Include="ping.c" />
@@ -137,7 +139,9 @@
     <ClCompile Include="submenu.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="adaptadorRed.h" />
     <ClInclude Include="conexionIP.h" />
+    <ClInclude Include="escogerAdaptador.h" />
     <ClInclude Include="fecha.h" />
     <ClInclude Include="menuPrincipal.h" />
     <ClInclude Include="ping.h" />

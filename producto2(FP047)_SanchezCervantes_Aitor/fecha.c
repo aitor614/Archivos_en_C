@@ -24,8 +24,8 @@ void insertarFechaHora() {
 	}
 	else {
 		ctime_s(buffer, BUFFER_SIZE, &fecha);
-		fprintf(archivo, "Fecha y hora: %s\n", buffer);
-		fprintf(stdout, "Fecha y hora insertada correctamente\n");
+		fprintf(archivo, "Fecha y hora: %s", buffer);
+		printf_s("Fecha y hora insertada correctamente\n");
 		fclose(archivo);
 	}
 	
