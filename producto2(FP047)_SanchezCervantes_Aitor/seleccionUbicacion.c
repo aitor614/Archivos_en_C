@@ -1,4 +1,4 @@
-#include "seleccionUbicacion.h"
+#include "seleccionNombre.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -13,19 +13,19 @@ void seleccionarUbicacionArchivo() {
 	int longitudMax = sizeof(ubicacionArchivo);
 
 
-	/* ---- Pedir al usuario que introduzca la ubicación del archivo -------- */
+	/* --- Bucle para la seleccion del archivo que contiene las direcciones IP -------------------------------- */
 	do {
 
+		/* --- Pedir al usuario que introduzca la ubicación del archivo -------------------------------- */
 		printf_s("\n***************SELECIÓN DE UBICACIÓN DEL ARCHIVO***************\n");
 		printf_s("Introduce la ubicación del archivo: ");
 
+		/* --- Leer la ubicación del archivo introducida por el usuario ------------------------ */
 		if (!fgets(ubicacionArchivo, sizeof ubicacionArchivo, stdin)) {
 			perror("Error al leer la ubicación del archivo");
 			return;
 		}
 
-		//scanf_s("%99s", ubicacionArchivo, (unsigned int)sizeof(ubicacionArchivo)) != 1;
-			
 		/* --- Eliminar el salto de línea al final de la cadena ----------------------------------------- */
 		ubicacionArchivo[strcspn(ubicacionArchivo, "\n")] = '\0'; 
 
@@ -34,13 +34,15 @@ void seleccionarUbicacionArchivo() {
 		if (longitud > 0 && ubicacionArchivo[longitud - 1] == '/') {
 
 			printf_s("Ubicacion correcta\n");
+
+			/* --- Seleccionar el nombre del archivo ----------------------------------------- */
 			seleccionarNombreArchivo();
 		}
 		else {
-			printf("Error: La ubicación debe ser '/' ya que se encuentra en la raiz del pproyecto. Inténtalo de nuevo.\n");
+			printf("Error: La ubicación debe ser '/' ya que se encuentra en la raiz del proyecto. Inténtalo de nuevo.\n");
 		}
 		
-
+		/* --- Comprobar si la ubicación es válida ----------------------------------------------------- */
 	} while (strcmp(ubicacionArchivo, "/") != 0);
 
 

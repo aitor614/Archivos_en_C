@@ -7,24 +7,25 @@
 
 
 
-
-
 void insertarFechaHora() {
 
+	/* --- Variables ----------------------------------------- */
 	FILE* archivo;
-	errno_t error;
 	time_t fecha;
+
 	time(&fecha);
+
 	char buffer[BUFFER_SIZE];
 
-	error = fopen_s(&archivo, "producto2.txt", "a");
-	if (error != 0 || archivo == NULL) {
+
+	/* --- Abrir el archivo en modo de modo de añadir (append)  ---------------- */
+		if (fopen_s(&archivo, "producto2.txt", "a") !=0 || !archivo) {
 		perror("Error al abrir el archivo");
 		exit(EXIT_FAILURE);
-	}
-	else {
+
+	}	else {
 		ctime_s(buffer, BUFFER_SIZE, &fecha);
-		fprintf(archivo, "Fecha y hora: %s", buffer);
+		fprintf(archivo, "\nFecha y hora: %s", buffer);
 		printf_s("Fecha y hora insertada correctamente\n");
 		fclose(archivo);
 	}

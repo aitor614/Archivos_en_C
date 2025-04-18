@@ -1,4 +1,4 @@
-#include "seleccionNombre.h"
+#include "conexionIP.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -10,16 +10,27 @@
 
 void seleccionarNombreArchivo() {
 	
-	
+	/* ---- Variables ---------------------------------- */
 	char nombreArchivo[BUFFER_SIZE];
 	int longitudMax= sizeof(nombreArchivo);
 
+	/* --- Bucle para la seleccion del archivo que contiene las direcciones IP -------------------------------- */
 	do {
+
+		/* --- Pedir al usuario que introduzca la ubicación del archivo -------------------------------- */
 		printf_s("\n***************SELECCIÓN DE NOMBRE DEL ARCHIVO***************\n");
 		printf_s("Introduce el nombre del archivo: ");
 
-		scanf_s("%99s", nombreArchivo, (unsigned int)sizeof(nombreArchivo)) != 1;
-		
+		/* --- Leer el nombre del archivo introducido por el usuario ------------------------ */
+		if (!fgets(nombreArchivo, sizeof nombreArchivo, stdin)) {
+			perror("Error al leer el nombre del archivo");
+			break;
+		}
+
+		/* --- Eliminar el salto de línea al final de la cadena ----------------------------------------- */
+		nombreArchivo[strcspn(nombreArchivo, "\n")] = '\0';
+
+		/* --- Comprobar si la ubicación es válida ----------------------------------------------------- */
 		if (strcmp(nombreArchivo, "direccionesIP.txt") == 0) {
 			printf_s("Nombre correcto\n");
 			mostarIpConexiones();
@@ -31,6 +42,6 @@ void seleccionarNombreArchivo() {
 		}
 
 
-		
+		/* --- Comprobar si la ubicación es válida ----------------------------------------------------- */
 	} while (true);
 }

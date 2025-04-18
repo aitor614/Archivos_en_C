@@ -1,4 +1,4 @@
-# include "adaptadorRed.h"
+# include "escogerAdaptador.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -10,7 +10,6 @@
 void mostrarAdaptador() {
 
 	/* -- Variables ---------------------------------- */
-
 	FILE* archivo;
 	char buffer[BUFFER_SIZE];
     char line[BUFFER_SIZE];

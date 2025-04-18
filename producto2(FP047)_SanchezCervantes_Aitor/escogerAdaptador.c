@@ -1,99 +1,88 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
+
 
 #define BUFFER_SIZE 512
 
 void escogerAdaptador()
 {
-	/* ---- Variables ---------------------------------- */
-    FILE* archivo;            
-    FILE* archivoAdaptador;
-	
+   
+	/* --- Variables ---------------------------------- */
+    FILE* archivo = NULL;           
+    FILE* archivoAdaptador = NULL;  
     char  line[BUFFER_SIZE];
     char  adaptador[BUFFER_SIZE];
+    int   dentro = 0, capturadas = 0;
 
-    int dentro = 0;          /* 1 = estamos en el bloque correcto      */
-    int capturadas = 0;
-    
-    /* ---- Leer nombre del adaptador ---------------------------------- */
-    printf_s("\n*************** SELECCIÓN DE ADAPTADOR DE RED ***************\n");
-    printf_s("\nNombre exacto del adaptador: ");
-    if (!fgets(adaptador, sizeof adaptador, stdin)) 
-        return;
+    /* --- Pedir nombre del adaptador -------------------------- */
+    printf("\n*************** SELECCIÓN DE ADAPTADOR DE RED ***************\n");
+    printf("Nombre exacto del adaptador: ");
 
-	/* ---- Eliminar salto de línea ---------------------------------- */
+	/* --- Leer el nombre del adaptador introducido por el usuario ------------------------ */
+    if (!fgets(adaptador, sizeof adaptador, stdin)) return;
     adaptador[strcspn(adaptador, "\n")] = '\0';
 
-    /* ---- Ejecutamos ipconfig ------------------------------------------ */
+    /* --- Lanzar ipconfig /all ---------------------- */
     archivo = _popen("ipconfig /all", "r");
-    if (!archivo) { 
+    if (!archivo) {
         perror("ipconfig"); 
         return; 
     }
 
-	/* ---- Abrimos el archivo de salida ------------------------------------ */
-    if (fopen_s(&archivoAdaptador, "adaptador.txt", "a") || !archivoAdaptador) {
+    /* --- Abrir/crear adaptador.txt (modo añadir) ---------------- */
+    if (fopen_s(&archivoAdaptador, "adaptador.txt", "a") != 0 || !archivoAdaptador) {
         perror("adaptador.txt");
-        _pclose(archivo); 
+        _pclose(archivo);
         return;
     }
 
-	printf_s(archivoAdaptador, "\n*************** ADAPTADOR DE RED ***************\n");
-	printf_s("\nAquí tienes los datos del adaptador escogido\n\n");
+    /* --- cabecera ---------------------------------------- */
+    fprintf(archivoAdaptador,
+        "\n*************** ADAPTADOR DE RED ***************\n"
+        "Datos del adaptador escogido:\n\n");
+    printf("\n*************** ADAPTADOR DE RED ***************\n"
+        "Datos del adaptador escogido:\n\n");
 
-
-	/* ---- Leer el archivo y buscar el adaptador -------------------------- */
+    /* --- Recorrer la salida de ipconfig -------------------- */
     while (fgets(line, sizeof line, archivo)) {
+
         if (strstr(line, "Adaptador") && strstr(line, adaptador)) {
             fprintf(archivoAdaptador, "%s", line);
-            printf_s("%s", line);
+            printf("%s", line);
             dentro = 1;
             continue;
         }
-
         if (!dentro) continue;
 
-        /* --------- Líneas que nos interesan -------------------------- */
         if (strstr(line, "IPv4")) {
             fprintf(archivoAdaptador, "%s", line);
-			printf_s("%s", line);
+            printf("%s", line);
             ++capturadas;
         }
         else if (strstr(line, "subred")) {
             fprintf(archivoAdaptador, "%s", line);
-            printf_s("%s", line);
+            printf("%s", line);
             ++capturadas;
         }
         else if (strstr(line, "Puerta de enlace")) {
             fprintf(archivoAdaptador, "%s", line);
-            printf_s("%s", line);
-            fprintf(archivoAdaptador, "\n");
-            fprintf(archivoAdaptador, "-----------------------------------------------------------------------------\n");
+            printf("%s", line);
+            fprintf(archivoAdaptador,
+                "-------------------------------------------------------------\n");
             ++capturadas;
         }
 
-		
-
-        /* cuando tengamos las 3, terminamos                            */
-        if (capturadas == 3) 
-            break;
+        if (capturadas == 3) break;
     }
 
-	/* ---- Cerramos el archivo de salida --------------------- */ 
-	fclose(archivoAdaptador);
-
-	/* ---- Cerrar el archivo ---------------------------------------- */
+    /* --- Cerrar archivos ---------------------------------------------------------*/
+    fclose(archivoAdaptador);
     _pclose(archivo);
 
-	/* ---- Comprobamos si hemos capturado las 3 líneas -------------- */
+    /* --- Mensaje final ----------------------------------------------- */
     if (capturadas == 3)
-        printf_s("\nInformación guardada en adaptador.txt\n");
+        printf("\nInformación guardada en adaptador.txt\n");
     else
-        printf_s("\nNo se encontró el adaptador o faltan datos en la salida.\n");
+        printf("\nNo se encontró el adaptador o faltan datos en la salida.\n");
 }
-
-
-

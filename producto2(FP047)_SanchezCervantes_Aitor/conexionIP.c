@@ -1,4 +1,6 @@
 #include "conexionIP.h"
+#include "menuPrincipal.h"
+#include "ping.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -17,13 +19,13 @@ void mostarIpConexiones() {
 
 	if (!archivo) {
 		perror("Error al abrir el archivo");
-		return;
+		exit(EXIT_FAILURE);	
 	}
 	else {
 		/* -- Leer el archivo y mostrar su contenido -------- */
 		printf_s("\nArchivo abierto correctamente\n");
 		printf_s("\nEl contenido del archivo direccionesIP.txt es:\n");
-		
+	
 		while (fgets(buffer, BUFFER_SIZE, archivo) != NULL) {
 			isEmpty = 0;
 			buffer[strcspn(buffer, "\n")] = 0; /* --- strcspn: Devuelve la longitud de la cadena sin el salto de línea --- */ 

@@ -1,0 +1,9 @@
+
+*************** ADAPTADOR DE RED ***************
+Datos del adaptador escogido:
+
+Adaptador de Ethernet Ethernet:
+   Direcci¢n IPv4. . . . . . . . . . . . . . : 192.168.1.128(Preferido) 
+   M scara de subred . . . . . . . . . . . . : 255.255.255.0
+   Puerta de enlace predeterminada . . . . . : 192.168.1.1
+-------------------------------------------------------------

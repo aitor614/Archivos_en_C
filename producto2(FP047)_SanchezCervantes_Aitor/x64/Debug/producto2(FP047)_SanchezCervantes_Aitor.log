@@ -1,14 +1,4 @@
 ﻿  escogerAdaptador.c
-C:\Users\usuario\source\repos\producto2(FP047)_SanchezCervantes_Aitor\producto2(FP047)_SanchezCervantes_Aitor\escogerAdaptador.c(44,11): warning C4133: 'función': tipos incompatibles, de 'FILE *' a 'const char *const '
-  seleccionUbicacion.c
-C:\Users\usuario\source\repos\producto2(FP047)_SanchezCervantes_Aitor\producto2(FP047)_SanchezCervantes_Aitor\seleccionUbicacion.c(30,20): warning C4013: 'strcspn' sin definir; se supone que extern devuelve como resultado int
-C:\Users\usuario\source\repos\producto2(FP047)_SanchezCervantes_Aitor\producto2(FP047)_SanchezCervantes_Aitor\seleccionUbicacion.c(33,18): warning C4013: 'strlen' sin definir; se supone que extern devuelve como resultado int
-C:\Users\usuario\source\repos\producto2(FP047)_SanchezCervantes_Aitor\producto2(FP047)_SanchezCervantes_Aitor\seleccionUbicacion.c(37,4): warning C4013: 'seleccionarNombreArchivo' sin definir; se supone que extern devuelve como resultado int
-C:\Users\usuario\source\repos\producto2(FP047)_SanchezCervantes_Aitor\producto2(FP047)_SanchezCervantes_Aitor\seleccionUbicacion.c(44,11): warning C4013: 'strcmp' sin definir; se supone que extern devuelve como resultado int
-  submenu.c
-C:\Users\usuario\source\repos\producto2(FP047)_SanchezCervantes_Aitor\producto2(FP047)_SanchezCervantes_Aitor\submenu.c(36,5): warning C4013: 'seleccionarUbicacionArchivo' sin definir; se supone que extern devuelve como resultado int
-C:\Users\usuario\source\repos\producto2(FP047)_SanchezCervantes_Aitor\producto2(FP047)_SanchezCervantes_Aitor\submenu.c(39,5): warning C4013: 'seleccionarNombreArchivo' sin definir; se supone que extern devuelve como resultado int
-  Generando código...
   producto2(FP047)_SanchezCervantes_Aitor.vcxproj -> C:\Users\usuario\source\repos\producto2(FP047)_SanchezCervantes_Aitor\x64\Debug\producto2(FP047)_SanchezCervantes_Aitor.exe
   "pwsh.exe" no se reconoce como un comando interno o externo,
   programa o archivo por lotes ejecutable.

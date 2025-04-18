@@ -1,4 +1,6 @@
 #include "submenu.h"
+#include "seleccionNombre.h"
+#include "seleccionUbicacion.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -36,7 +38,8 @@ void submenu() {
 				seleccionarUbicacionArchivo();
 				break;
 			case 2:
-				seleccionarNombreArchivo();
+				printf_s("\nDebes seleccionar primero la ubicación del archivo antes de introducir el nombre\n");
+				opcion = 0;
 				break;
 			default:
 				printf_s("Opción no válida, Intentalo de nuevo.\n");

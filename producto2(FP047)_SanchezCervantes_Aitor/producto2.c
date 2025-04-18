@@ -1,14 +1,18 @@
-
+#include "menuPrincipal.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <locale.h>
 
 
+
+
 int main(void) {
 
-	setlocale(LC_CTYPE, "spanish"); // Para poder imprimir caracteres especiales
+	/* --- Para poder imprimir caracteres especiales ---------- */
+	setlocale(LC_CTYPE, "spanish"); 
 	
+	/* --- Función para ir al menú Principal ------------- */
 	menuPrincipal();
 
 }
