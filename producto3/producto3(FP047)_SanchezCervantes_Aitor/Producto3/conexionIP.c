@@ -1,4 +1,5 @@
 #include "menuPrincipal.h"
+#include "ping.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -45,6 +46,10 @@ void mostarIpConexiones() {
 		menuPrincipal();
 		return;
 	}
+
+	/* -- Realizar ping a las IPs ----------------------- */
+	printf_s("\nRealizando ping a las IPs...\n");
+	ping();
 
 
 }

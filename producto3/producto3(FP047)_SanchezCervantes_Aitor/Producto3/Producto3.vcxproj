@@ -128,14 +128,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="conexionIP.c" />
+    <ClCompile Include="escogerAdaptador.c" />
+    <ClCompile Include="menuAdaptadorRed.c" />
     <ClCompile Include="menuPrincipal.c" />
+    <ClCompile Include="mostrarAdaptadorRed.c" />
+    <ClCompile Include="ping.c" />
     <ClCompile Include="producto3.c" />
     <ClCompile Include="seleccionNombre.c" />
     <ClCompile Include="seleccionUbicacion.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="conexionIP.h" />
+    <ClInclude Include="escogerAdaptador.h" />
+    <ClInclude Include="menuAdaptadorRed.h" />
     <ClInclude Include="menuPrincipal.h" />
+    <ClInclude Include="mostrarAdaptadorRed.h" />
+    <ClInclude Include="ping.h" />
     <ClInclude Include="seleccionNombre.h" />
     <ClInclude Include="seleccionUbicacion.h" />
   </ItemGroup>

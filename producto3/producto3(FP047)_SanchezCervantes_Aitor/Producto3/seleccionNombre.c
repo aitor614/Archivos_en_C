@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 #include <errno.h>
 
 
@@ -41,6 +42,7 @@ void seleccionarNombreArchivo() {
 			printf("Error: El nombre del archivo que contiene las IP's es: 'DNSips.txt'. Inténtalo de nuevo.\n");
 		}
 
+		
 
 		/* --- Comprobar si la ubicación es válida ----------------------------------------------------- */
 	} while (true);
