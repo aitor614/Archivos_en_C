@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="conexionIP.c" />
     <ClCompile Include="escogerAdaptador.c" />
+    <ClCompile Include="limpiarBuffer.c" />
     <ClCompile Include="menuAdaptadorRed.c" />
     <ClCompile Include="menuPrincipal.c" />
     <ClCompile Include="mostrarAdaptadorRed.c" />
@@ -140,6 +141,7 @@
   <ItemGroup>
     <ClInclude Include="conexionIP.h" />
     <ClInclude Include="escogerAdaptador.h" />
+    <ClInclude Include="limpiarBuffer.h" />
     <ClInclude Include="menuAdaptadorRed.h" />
     <ClInclude Include="menuPrincipal.h" />
     <ClInclude Include="mostrarAdaptadorRed.h" />

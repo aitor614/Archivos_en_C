@@ -42,6 +42,9 @@
     <ClCompile Include="escogerAdaptador.c">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="limpiarBuffer.c">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="menuPrincipal.h">
@@ -66,6 +69,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="escogerAdaptador.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="limpiarBuffer.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

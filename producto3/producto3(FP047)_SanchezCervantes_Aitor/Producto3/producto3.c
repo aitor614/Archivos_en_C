@@ -8,7 +8,9 @@ int main(void) {
 
 	/* --- Para poder imprimir caracteres especiales ---------------------- */
 	setlocale(LC_ALL, "spanish");
+	//system("chcp 65001 > nul");
 
+	
 	/* --- Función para ir al menú Principal ------------- */
 	menuPrincipal();
 
