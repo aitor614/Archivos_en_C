@@ -1,4 +1,3 @@
-#include "mostrarAdaptadorRed.h"
 #include "escogerAdaptador.h"
 #include "menuPrincipal.h"
 #include <stdio.h>
@@ -19,9 +18,8 @@ void menuAdaptadorRed() {
 	do {
 		printf_s("\n***************MENÚ ADAPTADOR DE RED***************\n");
 		printf_s("1. Escoger el adaptador de red a modificar\n");
-		printf_s("2. Atras\n");
-		printf_s("3. Salir\n");
-		printf_s("4. Realizar prueba de conexión\n");
+		printf_s("3. Atras\n");
+		printf_s("4. Salir\n");
 		printf_s("\nIntroduce una opción: ");
 
 		/* --- Leer la opción introducida por el usuario ------------------------ */
@@ -40,18 +38,16 @@ void menuAdaptadorRed() {
 			{
 			case 1:
 				escogerAdaptador();
+				break;
 			case 2:
+				velocidadDNS();
+			case 3:
 				printf_s("Volviendo al menú principal...\n");
 				menuPrincipal();
 				break;
-			case 3:
+			case 4:
 				printf_s("Saliendo del programa...\n");
 				exit(0);
-
-			case 4:
-				printf_s("Realizando prueba de conexión...\n");
-				adaptadorRed();
-				break;
 			default:
 				break;
 			}

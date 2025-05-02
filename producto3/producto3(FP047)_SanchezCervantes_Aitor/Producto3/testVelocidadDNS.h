@@ -1,0 +1,7 @@
+#ifndef TESTVELOCIDADDNS_H
+#define TESTVELOCIDADDNS_H
+
+void velocidadDNS();
+
+
+#endif // TESTVELOCIDADDNS_H

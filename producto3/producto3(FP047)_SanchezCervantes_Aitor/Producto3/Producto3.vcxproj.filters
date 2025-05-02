@@ -36,13 +36,13 @@
     <ClCompile Include="menuAdaptadorRed.c">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="mostrarAdaptadorRed.c">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="escogerAdaptador.c">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="limpiarBuffer.c">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="testVelocidadDNS.c">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,13 +65,16 @@
     <ClInclude Include="menuAdaptadorRed.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="mostrarAdaptadorRed.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="escogerAdaptador.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="limpiarBuffer.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="velocidadDNS.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="testVelocidadDNS.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

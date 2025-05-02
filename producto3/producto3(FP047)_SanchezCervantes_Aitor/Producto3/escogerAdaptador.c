@@ -21,16 +21,16 @@ void escogerAdaptador() {
 
 
     /* --- Ejecutar comando netsh para mostrar interfaces ------------------ */
-    FILE* fp = _popen("netsh interface show interface", "r");
+    FILE* salidaAdaptador = _popen("netsh interface show interface", "r");
 
     /* --- Comprobar si el comando se ejecutó correctamente -------------------- */
-    if (!fp) {
+    if (!salidaAdaptador) {
         perror("Error ejecutando netsh");
         return;
     }
 
     /* --- Leer línea por línea e identificar los nombres de los adaptadores ---- */
-    while (fgets(linea, sizeof(linea), fp)) {
+    while (fgets(linea, sizeof(linea), salidaAdaptador)) {
 
         if (lineasSaltadas < 3) { // Saltar cabecera de la salida del comando
             lineasSaltadas++;
@@ -52,7 +52,7 @@ void escogerAdaptador() {
         }
     }
 
-    _pclose(fp);
+    _pclose(salidaAdaptador);
 
 	/* --- Comprobar si se encontraron adaptadores --------------------- */
     if (num_adaptadores == 0) {
@@ -90,39 +90,63 @@ void escogerAdaptador() {
 
     /* --- Abrir archivo de salida para guardar la configuración -------- */
     FILE* archivo = NULL;
-    if (fopen_s(&archivo, "adaptador.txt", "a") != 0 || !archivo) {
-        perror("Error abriendo adaptador.txt");
+    if (fopen_s(&archivo, "archivoTemporal.txt", "a") != 0 || !archivo) {
+        perror("Error abriendo archivoTemporal.txt");
         _pclose(salida);
         return;
     }
 
     printf("\n*************** CONFIGURACIÓN DEL ADAPTADOR '%s' ***************\n\n", adaptador);
-    fprintf(archivo, "\n*************** CONFIGURACIÓN DEL ADAPTADOR '%s' ***************\n\n", adaptador);
+    
 
     /* --- Escribir la configuración en pantalla y en archivo ----------- */
     bool dns_mostrado = false;
 
+    /* --- Leer la salida del comando y buscar información de DNS ----------- */
     while (fgets(linea, sizeof(linea), salida)) {
-        if (strstr(linea, "Servidores DNS") && !dns_mostrado) {
-            // Buscar la parte después de los dos puntos
-            char* ptr = strchr(linea, ':');
-            if (ptr) {
-                ptr += 1; // Saltar el ':' 
-                while (*ptr == ' ' || *ptr == '\t') ptr++; // Saltar espacios
+        if (strstr(linea, "Servidores DNS")) {
 
-                // Eliminar salto de línea al final
-                ptr[strcspn(ptr, "\r\n")] = 0;
+            // Buscar la parte después de ':'
+            char* valorDNS = strchr(linea, ':');
+            if (valorDNS) {
+                valorDNS++;
+                while (*valorDNS == ' ' || *valorDNS == '\t') valorDNS++;
+                valorDNS[strcspn(valorDNS, "\r\n")] = 0;
 
-                printf("DNS configurado: %s\n", ptr);
-                fprintf(archivo, "DNS configurado: %s\n", ptr);
-                dns_mostrado = true;
+                // Mostrar el DNS en pantalla una sola vez
+                if (!dns_mostrado) {
+                    printf("DNS configurado: %s\n", valorDNS);
+
+                    /* --- Validar si el valor es una IP válida ---------- */
+                    int a, b, c, d;
+                    if (sscanf_s(valorDNS, "%d.%d.%d.%d", &a, &b, &c, &d) == 4 &&
+                        a >= 0 && a <= 255 &&
+                        b >= 0 && b <= 255 &&
+                        c >= 0 && c <= 255 &&
+                        d >= 0 && d <= 255) {
+
+                        fprintf(archivo, "% s\n", valorDNS);
+                        printf("\nConfiguración guardada en 'archivoTemporal.txt'\n");
+                    }
+                    else {
+                        printf("El valor encontrado no es una IP válida, no se guarda.\n");
+                    }
+
+                    dns_mostrado = true; // Marcamos que ya se ha procesado un DNS
+                }
             }
         }
     }
 
+    /* --- Si no se encontró ningún DNS válido, mostrar aviso al usuario --- */
+    if (!dns_mostrado) {
+        printf("No se ha encontrado ningún DNS configurado para este adaptador.\n");
+    }
 
     fclose(archivo);
     _pclose(salida);
 
-    printf("\nConfiguración guardada en 'adaptador.txt'\n");
+    
 }
+
+

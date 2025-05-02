@@ -132,11 +132,11 @@
     <ClCompile Include="limpiarBuffer.c" />
     <ClCompile Include="menuAdaptadorRed.c" />
     <ClCompile Include="menuPrincipal.c" />
-    <ClCompile Include="mostrarAdaptadorRed.c" />
     <ClCompile Include="ping.c" />
     <ClCompile Include="producto3.c" />
     <ClCompile Include="seleccionNombre.c" />
     <ClCompile Include="seleccionUbicacion.c" />
+    <ClCompile Include="testVelocidadDNS.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="conexionIP.h" />
@@ -144,10 +144,11 @@
     <ClInclude Include="limpiarBuffer.h" />
     <ClInclude Include="menuAdaptadorRed.h" />
     <ClInclude Include="menuPrincipal.h" />
-    <ClInclude Include="mostrarAdaptadorRed.h" />
     <ClInclude Include="ping.h" />
     <ClInclude Include="seleccionNombre.h" />
     <ClInclude Include="seleccionUbicacion.h" />
+    <ClInclude Include="testVelocidadDNS.h" />
+    <ClInclude Include="velocidadDNS.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
