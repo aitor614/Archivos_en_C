@@ -29,6 +29,8 @@ void escogerAdaptador() {
         return;
     }
 
+    printf_s("\n*************** ADAPTADORES DISPONIBLES ***************\n");
+
     /* --- Leer línea por línea e identificar los nombres de los adaptadores ---- */
     while (fgets(linea, sizeof(linea), salidaAdaptador)) {
 
@@ -63,6 +65,7 @@ void escogerAdaptador() {
     /* --- Solicitar al usuario que elija un adaptador ------------------- */
     int seleccion = 0;
     do {
+        
         printf("\nSeleccione el número del adaptador: ");
         if (scanf_s("%d", &seleccion) != 1 || seleccion < 1 || seleccion > num_adaptadores) {
             printf("Entrada no válida. Intente de nuevo.\n");
@@ -125,7 +128,7 @@ void escogerAdaptador() {
                         c >= 0 && c <= 255 &&
                         d >= 0 && d <= 255) {
 
-                        fprintf(archivo, "% s\n", valorDNS);
+                        fprintf( archivo, "%s \n", valorDNS);
                         printf("\nConfiguración guardada en 'archivoTemporal.txt'\n");
                     }
                     else {

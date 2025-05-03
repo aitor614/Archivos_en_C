@@ -37,7 +37,7 @@ void ping() {
 
 		/* --- Reiniciar exitoso para cada IP ------------------ */
 		exitoso = 0; 
-		pingExitoso[0] = '\0';
+		pingExitoso[0] = '\0'; // Limpiar el buffer de salida
 
 		/* --- Comando ping con 4 paquetes ----------------------------------------------------- */
 		char bufferPing[BUFFER_SIZE + 50];  
@@ -69,13 +69,13 @@ void ping() {
 		/* ---- Cerrar el archivo temporal ------------------------------- */
 		_pclose(archivoPingSalida);
 		
-		/* ---- Guardar el resultado en producto2.txt ------------------------------- */
+		/* ---- Guardar el resultado en archivoTemporal.txt ------------------------------- */
 		if (exitoso) {
 			/* --- Abrir el archivo en modo de añadir (append) ---------------- */
 			fopen_s(&archivoTemporal, "archivoTemporal.txt", "a");
 				
 			if (exitoso && archivoTemporal) {
-				fprintf(archivoTemporal, "\nPing a la IP: %s\n%s", buffer, pingExitoso);
+				fprintf(archivoTemporal, buffer, "\n");
 				fclose(archivoTemporal);
 				printf_s("\nPing exitoso para: %s\nGuardado en archivoTemporal.txt\n", buffer);
 			}

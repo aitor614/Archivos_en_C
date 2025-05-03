@@ -1,4 +1,5 @@
 #include "escogerAdaptador.h"
+#include "testVelocidadDNS.h"
 #include "menuPrincipal.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,6 +19,7 @@ void menuAdaptadorRed() {
 	do {
 		printf_s("\n***************MENÚ ADAPTADOR DE RED***************\n");
 		printf_s("1. Escoger el adaptador de red a modificar\n");
+		printf_s("2. Comprobar la velocidad del DNS\n");
 		printf_s("3. Atras\n");
 		printf_s("4. Salir\n");
 		printf_s("\nIntroduce una opción: ");
@@ -41,6 +43,7 @@ void menuAdaptadorRed() {
 				break;
 			case 2:
 				velocidadDNS();
+				break;
 			case 3:
 				printf_s("Volviendo al menú principal...\n");
 				menuPrincipal();
