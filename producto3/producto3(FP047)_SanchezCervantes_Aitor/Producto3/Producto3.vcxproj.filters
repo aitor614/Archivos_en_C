@@ -45,6 +45,12 @@
     <ClCompile Include="testVelocidadDNS.c">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="cambiarDNS.c">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="limpiarCadena.c">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="menuPrincipal.h">
@@ -75,6 +81,12 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="testVelocidadDNS.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="cambiarDNS.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="limpiarCadena.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

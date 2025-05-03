@@ -1,4 +1,5 @@
 #include "limpiarBuffer.h"
+#include "limpiarCadena.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -10,14 +11,14 @@
 
 
 /* --- Función principal para escoger un adaptador de red y mostrar su configuración ---- */
-void escogerAdaptador() {
+void escogerAdaptador(char* dnsEquipo, size_t size) {
 
     /* --- Variables ---------------------------------- */
     char adaptadores[MAX_ADAPTADORES][BUFFER_SIZE]; // Almacena los nombres de los adaptadores encontrados
     int num_adaptadores = 0; // Contador de adaptadores encontrados
     char linea[BUFFER_SIZE]; // Almacén temporal para líneas leídas del comando
     int lineasSaltadas = 0; // Número de líneas de cabecera a ignorar
-
+	
 
 
     /* --- Ejecutar comando netsh para mostrar interfaces ------------------ */
@@ -104,7 +105,7 @@ void escogerAdaptador() {
 
     /* --- Escribir la configuración en pantalla y en archivo ----------- */
     bool dns_mostrado = false;
-
+	; // Almacena el DNS encontrado;
     /* --- Leer la salida del comando y buscar información de DNS ----------- */
     while (fgets(linea, sizeof(linea), salida)) {
         if (strstr(linea, "Servidores DNS")) {
@@ -114,11 +115,10 @@ void escogerAdaptador() {
             if (valorDNS) {
                 valorDNS++;
                 while (*valorDNS == ' ' || *valorDNS == '\t') valorDNS++;
-                valorDNS[strcspn(valorDNS, "\r\n")] = 0;
+                limpiarCadena(valorDNS);
 
                 // Mostrar el DNS en pantalla una sola vez
                 if (!dns_mostrado) {
-                    printf("DNS configurado: %s\n", valorDNS);
 
                     /* --- Validar si el valor es una IP válida ---------- */
                     int a, b, c, d;
@@ -127,29 +127,32 @@ void escogerAdaptador() {
                         b >= 0 && b <= 255 &&
                         c >= 0 && c <= 255 &&
                         d >= 0 && d <= 255) {
-
-                        fprintf( archivo, "%s \n", valorDNS);
-                        printf("\nConfiguración guardada en 'archivoTemporal.txt'\n");
+						
+						
+                        strcpy_s(dnsEquipo, BUFFER_SIZE, valorDNS);
+                        fprintf(archivo, "%s\n", valorDNS);
+                        printf("DNS configurado: %s\n", dnsEquipo);
+                        break;
                     }
                     else {
                         printf("El valor encontrado no es una IP válida, no se guarda.\n");
                     }
 
                     dns_mostrado = true; // Marcamos que ya se ha procesado un DNS
+				}
+				else {
+                    printf("No se ha encontrado ningún DNS configurado para este adaptador.\n");
                 }
             }
-        }
-    }
+		}
 
-    /* --- Si no se encontró ningún DNS válido, mostrar aviso al usuario --- */
-    if (!dns_mostrado) {
-        printf("No se ha encontrado ningún DNS configurado para este adaptador.\n");
-    }
-
+        
+	}
     fclose(archivo);
     _pclose(salida);
+	
 
-    
+   
 }
 
 

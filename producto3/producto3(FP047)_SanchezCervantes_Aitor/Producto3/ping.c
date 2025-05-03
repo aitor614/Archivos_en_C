@@ -75,7 +75,7 @@ void ping() {
 			fopen_s(&archivoTemporal, "archivoTemporal.txt", "a");
 				
 			if (exitoso && archivoTemporal) {
-				fprintf(archivoTemporal, buffer, "\n");
+				fprintf(archivoTemporal, "%s\n", buffer);
 				fclose(archivoTemporal);
 				printf_s("\nPing exitoso para: %s\nGuardado en archivoTemporal.txt\n", buffer);
 			}

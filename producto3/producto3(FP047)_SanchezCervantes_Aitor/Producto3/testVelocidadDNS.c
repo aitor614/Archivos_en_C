@@ -1,3 +1,4 @@
+#include "limpiarCadena.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -5,7 +6,7 @@
 
 #define BUFFER_SIZE 1024
 
-void velocidadDNS() {
+void velocidadDNS(char* mejorDNS, size_t size) {
 
 	/* ---- Variables ---------------------------------- */
 
@@ -13,7 +14,8 @@ void velocidadDNS() {
 	char buffer[BUFFER_SIZE];
 	char bufferSalida[BUFFER_SIZE];
 	int mejorTiempo = -1;
-	char mejorIP[BUFFER_SIZE] = "";
+	int menosSaltos = -1;
+
 
 	/* -Abrir el archivo temporal en modo lectura -------------------------------- */
 	FILE* archivo;
@@ -49,18 +51,44 @@ void velocidadDNS() {
 		/* ---- Leer la salida del comando ping ---------------------------------- */
 		while (fgets(bufferSalida, sizeof(bufferSalida), archivoPingSalida) != NULL) {
 
+			limpiarCadena(ip);
+
 			char* velocidad = strstr(bufferSalida, "tiempo="); // Buscar la cadena "tiempo=" en minúsculas
+			char* salto = strstr(bufferSalida, "TTL"); // Buscar la cadena "TTL" en mayusculas
 			if (velocidad != NULL) {
+
 				int tiempoRespuesta;
+				int saltoDNS;
+
+				/* --- Extraer el valor de tiempo de respuesta --------------------- */
 				if (sscanf_s(velocidad, "tiempo=%d", &tiempoRespuesta) == 1) {
-					printf_s("Tiempo de respuesta: %d ms\n", tiempoRespuesta);
+					/* --- Extraer el valor de TTL --------------------- */
+					
+					/* --- Extraer el valor de los saltos de respuesta --------------------- */
+					sscanf_s(salto, "TTL=%d", &saltoDNS);
+
+					/* --- Mostrar el tiempo de respuesta  y los saltos --------------------- */
+					printf_s("Tiempo de respuesta: %d ms \nSaltos: %d TTL\n", tiempoRespuesta, saltoDNS);
 					encontrado = true;
 
 					/* --- Guardar la IP más rápida si es la primera o la mejor hasta ahora ------------------------ */
 					if (mejorTiempo == -1 || tiempoRespuesta < mejorTiempo) {
 						mejorTiempo = tiempoRespuesta;
-						strcpy_s(mejorIP, sizeof(mejorIP), ip);
+						menosSaltos = saltoDNS;
+
+						strcpy_s(mejorDNS, BUFFER_SIZE *2, ip);
+						
 					}
+
+					else if (tiempoRespuesta == mejorTiempo) {
+						/* --- Guardar la IP con menos saltos si el tiempo es el mismo ------------------------ */
+						if (menosSaltos == -1 || saltoDNS < menosSaltos) {
+							mejorTiempo = tiempoRespuesta;
+							menosSaltos = saltoDNS;
+							strcpy_s(mejorDNS, BUFFER_SIZE * 2, ip);
+						}
+					}
+						
 
 				}
 				else {
@@ -77,13 +105,14 @@ void velocidadDNS() {
 	}
 
 	fclose(archivo);
-
-	// Mostrar la IP más rápida
-	if (mejorTiempo != -1) {
-		printf_s("\nLa IP más rápida es: %s con %d ms\n", mejorIP, mejorTiempo);
+	remove("archivoTemporal.txt");
+	// Mostrar la IP más rápida 
+	if (mejorTiempo != -1 && menosSaltos != -1) {
+		printf_s("\nLa IP más rápida es: %s con %d ms y %d TTL\n", mejorDNS, mejorTiempo, menosSaltos);
 	}
 	else {
 		printf_s("\nNo se obtuvo respuesta de ninguna IP.\n");
 	}
+
 }
 

@@ -127,9 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cambiarDNS.c" />
     <ClCompile Include="conexionIP.c" />
     <ClCompile Include="escogerAdaptador.c" />
     <ClCompile Include="limpiarBuffer.c" />
+    <ClCompile Include="limpiarCadena.c" />
     <ClCompile Include="menuAdaptadorRed.c" />
     <ClCompile Include="menuPrincipal.c" />
     <ClCompile Include="ping.c" />
@@ -139,9 +141,11 @@
     <ClCompile Include="testVelocidadDNS.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cambiarDNS.h" />
     <ClInclude Include="conexionIP.h" />
     <ClInclude Include="escogerAdaptador.h" />
     <ClInclude Include="limpiarBuffer.h" />
+    <ClInclude Include="limpiarCadena.h" />
     <ClInclude Include="menuAdaptadorRed.h" />
     <ClInclude Include="menuPrincipal.h" />
     <ClInclude Include="ping.h" />
