@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cambiarDNS.c" />
+    <ClCompile Include="comprobarIP.c" />
     <ClCompile Include="conexionIP.c" />
     <ClCompile Include="escogerAdaptador.c" />
     <ClCompile Include="limpiarBuffer.c" />
@@ -142,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cambiarDNS.h" />
+    <ClInclude Include="comprobarIP.h" />
     <ClInclude Include="conexionIP.h" />
     <ClInclude Include="escogerAdaptador.h" />
     <ClInclude Include="limpiarBuffer.h" />

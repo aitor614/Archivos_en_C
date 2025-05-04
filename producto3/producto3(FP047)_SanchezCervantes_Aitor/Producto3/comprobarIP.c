@@ -1,33 +1,24 @@
-#include "escogerAdaptador.h"
-#include "testVelocidadDNS.h"
-#include "cambiarDNS.h"
+#include "seleccionUbicacion.h"
 #include "menuPrincipal.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define BUFFER_SIZE 512
 
 
-
-void menuAdaptadorRed() {
+void comprobarIP() {
 
 	/* ---- Variables ---------------------------------- */
 	int opcion;
 	int resultado;
-	char dnsEquipo[BUFFER_SIZE] = "";
-	char mejorDNS[BUFFER_SIZE] = "";
-
-
 
 	/* ---- Mostrar el menú y leer la opción del usuario --------------------- */
 	do {
-		printf_s("\n***************MENÚ ADAPTADOR DE RED***************\n");
-		printf_s("1. Escoger el adaptador de red a modificar\n");
-		printf_s("2. Comprobar la velocidad del DNS\n");
-		printf_s("3. Cambiar el DNS\n");
-		printf_s("4. Atras\n");
-		printf_s("5. Salir\n");
+		printf_s("\n***************MENÚ COMPROBAR IP***************\n");
+		printf_s("1. Introducir la ubicación del archivo:\n");
+		printf_s("2. Introducir el nombre del archivo\n");
+		printf_s("3. Atras\n");
+		printf_s("4. Salir\n");
 		printf_s("\nIntroduce una opción: ");
 
 		/* --- Leer la opción introducida por el usuario ------------------------ */
@@ -42,26 +33,25 @@ void menuAdaptadorRed() {
 			continue;
 		}
 		else {
-			switch (opcion)
-			{
+			switch (opcion) {
 			case 1:
-				escogerAdaptador(dnsEquipo, BUFFER_SIZE);
+				seleccionarUbicacionArchivo();
 				break;
 			case 2:
-				velocidadDNS(mejorDNS, BUFFER_SIZE);
+				printf_s("\nDebes seleccionar primero la ubicación del archivo antes de introducir el nombre\n");
+				opcion = 0;
 				break;
-			case 3: 
-				cambioDNS(dnsEquipo, mejorDNS);
-				break;
-			case 4:
+			case 3:
 				printf_s("Volviendo al menú principal...\n");
 				menuPrincipal();
 				break;
-			case 5:
+			case 4:
 				printf_s("Saliendo del programa...\n");
 				remove("archivoTemporal.txt");
 				exit(0);
+				break;
 			default:
+				printf_s("Opción no válida, Intentalo de nuevo.\n");
 				break;
 			}
 		}

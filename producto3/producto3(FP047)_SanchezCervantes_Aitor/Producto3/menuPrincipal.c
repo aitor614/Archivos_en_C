@@ -1,5 +1,4 @@
-#include "seleccionNombre.h"
-#include "seleccionUbicacion.h"
+#include "comprobarIP.h"
 #include "menuAdaptadorRed.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,10 +14,9 @@ void menuPrincipal() {
 	/* ---- Mostrar el menú y leer la opción del usuario --------------------- */
 	do {
 		printf_s("\n***************MENÚ PRINCIPAL***************\n");
-		printf_s("1. Introducir la ubicación del archivo:\n");
-		printf_s("2. Introducir el nombre del archivo\n");
-		printf_s("3. Modificar el adaptador de red\n");
-		printf_s("4. Salir\n");
+		printf_s("1. Comprobar las IP válidas\n");
+		printf_s("2. Modificar el adaptador de red\n");
+		printf_s("3. Salir\n");
 		printf_s("\nIntroduce una opción: ");
 
 
@@ -36,16 +34,14 @@ void menuPrincipal() {
 		else {
 			switch (opcion) {
 			case 1:
-				seleccionarUbicacionArchivo();
+				comprobarIP();
 				break;
 			case 2:
-				printf_s("\nDebes seleccionar primero la ubicación del archivo antes de introducir el nombre\n");
-				opcion = 0;
-				break;
-			case 3:
 				menuAdaptadorRed();
-			case 4:
+				break;	
+			case 3:
 				printf_s("Saliendo del programa...\n");
+				remove("archivoTemporal.txt");
 				exit(0);
 				break;
 			default:
