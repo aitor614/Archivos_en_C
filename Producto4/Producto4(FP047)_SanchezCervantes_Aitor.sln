@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Producto4(FP047)_SanchezCervantes_Aitor", "Producto4(FP047)_SanchezCervantes_Aitor\Producto4(FP047)_SanchezCervantes_Aitor.vcxproj", "{2DD92497-4BC4-4961-A0CD-C3B8968A039B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2DD92497-4BC4-4961-A0CD-C3B8968A039B}.Debug|x64.ActiveCfg = Debug|x64
+		{2DD92497-4BC4-4961-A0CD-C3B8968A039B}.Debug|x64.Build.0 = Debug|x64
+		{2DD92497-4BC4-4961-A0CD-C3B8968A039B}.Debug|x86.ActiveCfg = Debug|Win32
+		{2DD92497-4BC4-4961-A0CD-C3B8968A039B}.Debug|x86.Build.0 = Debug|Win32
+		{2DD92497-4BC4-4961-A0CD-C3B8968A039B}.Release|x64.ActiveCfg = Release|x64
+		{2DD92497-4BC4-4961-A0CD-C3B8968A039B}.Release|x64.Build.0 = Release|x64
+		{2DD92497-4BC4-4961-A0CD-C3B8968A039B}.Release|x86.ActiveCfg = Release|Win32
+		{2DD92497-4BC4-4961-A0CD-C3B8968A039B}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0B8BABAA-6DFA-4DB6-9D93-BEA7DFEA1490}
+	EndGlobalSection
+EndGlobal
