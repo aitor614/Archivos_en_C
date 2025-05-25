@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="adaptador.c" />
+    <ClCompile Include="extraer_ip.c" />
     <ClCompile Include="limpiar_buffer.c" />
     <ClCompile Include="menuPrincipal.c" />
     <ClCompile Include="producto4.c" />
@@ -137,6 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="adaptador.h" />
+    <ClInclude Include="extraer_ip.h" />
     <ClInclude Include="limpiar_buffer.h" />
     <ClInclude Include="menuPrincipal.h" />
     <ClInclude Include="seleccion.h" />

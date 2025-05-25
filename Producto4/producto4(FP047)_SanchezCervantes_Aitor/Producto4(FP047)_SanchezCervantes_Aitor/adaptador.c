@@ -37,6 +37,7 @@ void mostrar_informacion_del_adaptador(const char* adaptador) {
         return;
     }
 
+    char ip_saltos[30][LONG_BUFFER];
     char line[LONG_BUFFER];
     char ip[LONG_BUFFER] = "";
     char mascara_subred[LONG_BUFFER] = "";
@@ -135,10 +136,10 @@ void mostrar_informacion_del_adaptador(const char* adaptador) {
     if (strlen(dns) > 0) {
         printf("\nServidor DNS: %s\n", dns);
         obtener_velocidad_respuesta_dns(dns, velocidad_media);
-        numero_saltos = trazar_ruta_dns(dns);
+        int numero_saltos = trazar_ruta_dns(dns, ip_saltos, 30);
 
         printf("\nGenerando archivo XML...\n");
-        crear_archivo_xml(ip, mascara_subred, puerta_enlace, dns, velocidad_media, numero_saltos);
+        crear_archivo_xml(ip, mascara_subred, puerta_enlace, dns, velocidad_media, numero_saltos, ip_saltos);
         printf("Archivo XML generado: configuracion_red.xml\n");
     }
     else {

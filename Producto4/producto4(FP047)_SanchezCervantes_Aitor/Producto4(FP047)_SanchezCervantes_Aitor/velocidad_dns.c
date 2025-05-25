@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "limpiar_buffer.h"
+#include "extraer_ip.h"
 
 
 
@@ -47,7 +48,7 @@ void obtener_velocidad_respuesta_dns(const char* dns, char* promedio) {
 }
 
 // Trazar la ruta al servidor DNS y devolver el número de saltos
-int trazar_ruta_dns(const char* dns) {
+int trazar_ruta_dns(const char* dns, char ip_saltos[][LONG_BUFFER], int max_saltos) {
     char comando[256];
     sprintf_s(comando, sizeof(comando), "tracert %s", dns);
     FILE* archivo = _popen(comando, "r");
@@ -58,13 +59,32 @@ int trazar_ruta_dns(const char* dns) {
 
     char line[1024];
     int saltos = 0;
+    int lineas_saltadas = 0;
 
     printf("\nTrazando la ruta al servidor DNS %s:\n", dns);
     while (fgets(line, sizeof(line), archivo) != NULL) {
         printf("%s", line); // Mostrar cada línea de la salida de tracert
-        if (strstr(line, "ms")) {
-            saltos++;
+
+        // Saltar las primeras 2 líneas de encabezado
+        if (lineas_saltadas < 2) {
+            lineas_saltadas++;
+            continue;
         }
+
+
+        // Ignorar líneas sin respuesta
+        if (strstr(line, "* * *") || strstr(line, "Tiempo de espera agotado"))
+            continue;
+
+        // Buscar y guardar IP válida de esta línea
+        char ip[LONG_BUFFER] = "";
+        if (extraer_ip_de_linea(line, ip, sizeof(ip))) {
+            if (saltos < max_saltos) {
+                strcpy_s(ip_saltos[saltos], LONG_BUFFER, ip);
+                saltos++;
+            }
+        }
+
     }
 
     _pclose(archivo);
