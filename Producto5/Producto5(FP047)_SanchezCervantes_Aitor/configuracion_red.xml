@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConfiguracionRed>
+    <IP>192.168.1.128</IP>
+    <MascaraSubred>192.168.1.0/24 (máscara 255.255.255.0)</MascaraSubred>
+    <PuertaEnlace>192.168.1.1</PuertaEnlace>
+    <DNS>208.67.222.222</DNS>
+    <VelocidadMedia>8ms,</VelocidadMedia>
+    <NumeroSaltos>7</NumeroSaltos>
+    <Saltos>
+        <Salto numero="1">192.168.1.1</Salto>
+        <Salto numero="2">10.108.0.1</Salto>
+        <Salto numero="3">10.15.3.93</Salto>
+        <Salto numero="4">213.242.109.89</Salto>
+        <Salto numero="5">171.75.10.165</Salto>
+        <Salto numero="6">212.133.4.254</Salto>
+        <Salto numero="7">208.67.222.222</Salto>
+    </Saltos>
+</ConfiguracionRed>
